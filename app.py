@@ -2,13 +2,13 @@
 
 import os, datetime
 import re
-import boto
+#import boto
 from unidecode import unidecode
 
 from flask import Flask, request, render_template, redirect, abort
 
-from boto.s3.connection import S3Connection
-conn = S3Connection('AKIAJUCJRHFFJ3VIWKPQ', 'wGxMAeKlMbjHjtVvTwcBnnQ+s2OlRvAG77QpeGMC')
+#from boto.s3.connection import S3Connection
+#conn = S3Connection('AKIAJUCJRHFFJ3VIWKPQ', 'wGxMAeKlMbjHjtVvTwcBnnQ+s2OlRvAG77QpeGMC')
 
 # import all of mongoengine
 from mongoengine import *
@@ -46,6 +46,8 @@ def newphoto():
 
 	app.logger.debug("JSON received...")
 	app.logger.debug(request.json)
+
+	print request.json
 
 	if request.json:
 		data = request.json
