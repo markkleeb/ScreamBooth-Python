@@ -2,7 +2,6 @@
 
 import os, datetime
 import re
-import json
 import boto
 from unidecode import unidecode
 
