@@ -41,7 +41,7 @@ def index():
 
 
 
-@app.route("/photos/add", methods=["GET","POST"])
+@app.route("/photos/add", methods=["POST"])
 def newphoto():
 
 	app.logger.debug("JSON received...")
