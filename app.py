@@ -60,7 +60,8 @@ def newphoto():
 
 
 	else:
-		return "FAIL"
+
+		return "FAIL : %s" %request.json
 	# get form data - create new idea
 	
 	
