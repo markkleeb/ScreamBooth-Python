@@ -2,9 +2,14 @@
 
 import os, datetime
 import re
+import json
+import boto
 from unidecode import unidecode
 
 from flask import Flask, request, render_template, redirect, abort
+
+from boto.s3.connection import S3Connection
+conn = S3Connection('AKIAJUCJRHFFJ3VIWKPQ', 'wGxMAeKlMbjHjtVvTwcBnnQ+s2OlRvAG77QpeGMC')
 
 # import all of mongoengine
 from mongoengine import *
@@ -37,22 +42,30 @@ def index():
 
 
 
-@app.route("/photos/add", methods=["POST"])
+@app.route("/photos/add", methods=["GET","POST"])
 def newphoto():
-	
-	app.logger.debug('member form response data')
-	app.logger.debug(request.form)
-	app.logger.debug('list of submitted categories')
-	app.logger.debug(request.form.getlist('categories'))
 
+	app.logger.debug("JSON received...")
+	app.logger.debug(request.json)
+
+	if request.json:
+		data = request.json
+
+		photo = models.Photo()
+		photo.img = data.get("photo")  
+		photo.slug = slugify(photo.img)
+		photo.save() 
+		return "Received %s" %data.get("photo") 	
+
+
+	else:
+		return "FAIL"
 	# get form data - create new idea
-	photo = models.Photo()
-	photo.img = request.form.get('photo')
+	
+	
+	
 
-	photo.slug = slugify(photo.img)
-
-
-	photo.save()
+	
 	
 
 
