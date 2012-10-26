@@ -53,8 +53,9 @@ def newphoto():
 
 		photo = models.Photo()
 		photo.img = data.get("photo")  
+		photo.mic = data.get("mic")
 		photo.slug = data.get("photo")  #slugify(photo.img)
-		photo.save() 
+		photo.save() 	
 		return "Received %s" %data.get("photo") 	
 
 

@@ -12,6 +12,7 @@ class Photo(Document):
 
 	name = StringField(max_length=120)
 	img = StringField(max_length=120, required=True)
+	mic = StringField(max_length=120)
 	slug = StringField()
 
 	# Comments is a list of Document type 'Comments' defined above
