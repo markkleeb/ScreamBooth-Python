@@ -3,10 +3,11 @@
 
 
 {% block body %}
+{% for p in photos %}
 
-<img src="https://dl.dropbox.com/u/45083870/images/1351124377362.gif">
+<img src="https://dl.dropbox.com/u/45083870/images/{{ p.img }}.gif" width=200 height=200>
 
-
+{% endfor %}
 
 
 {% endblock %}
