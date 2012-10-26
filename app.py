@@ -33,11 +33,11 @@ def index():
 
 
 	templateData = {
-		#'photos' : models.Photo.objects(),
+		'photos' : models.Photo.objects(),
 		
 	}
-	#return render_template("main.html", **templateData)
-	return render_template("main.html")
+	return render_template("main.html", **templateData)
+	#return render_template("main.html")
 
 
 
