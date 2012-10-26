@@ -10,7 +10,7 @@ class Comment(EmbeddedDocument):
 
 class Photo(Document):
 
-	name = StringField(max_length=120, required=True)
+	name = StringField(max_length=120)
 	img = StringField(max_length=120, required=True)
 	slug = StringField()
 
