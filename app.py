@@ -33,7 +33,7 @@ def index():
 
 
 	templateData = {
-		'photos' : models.Photo.objects().order_by('img', 'timestamp')
+		'photos' : models.Photo.objects()
 		
 	}
 	return render_template("main.html", **templateData)
