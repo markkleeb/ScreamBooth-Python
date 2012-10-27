@@ -31,9 +31,10 @@ print "Connecting to MongoLabs"
 @app.route("/")
 def index():
 
+	photos = models.Photo.objects().order_by('-timestamp')
 
 	templateData = {
-		'photos' : models.Photo.objects()
+		'photos' : photos
 		
 	}
 	return render_template("main.html", **templateData)
