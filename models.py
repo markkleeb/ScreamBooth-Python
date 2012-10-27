@@ -8,26 +8,20 @@ class Comment(EmbeddedDocument):
 	timestamp = DateTimeField(default=datetime.now())
 
 
+
 class Photo(Document):
 
-	name = StringField(max_length=120)
 	img = StringField(max_length=120, required=True)
-	mic = StringField(max_length=120)
 	slug = StringField()
+	#event = StringField(max_length=120, required=True)
 
-	# Comments is a list of Document type 'Comments' defined above
+	
 	comments = ListField( EmbeddedDocumentField(Comment) )
 
 	# Timestamp will record the date and time idea was created.
 	timestamp = DateTimeField(default=datetime.now())
 
 
-	
-
-
-
-	
-	
 
 	
 

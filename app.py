@@ -53,8 +53,11 @@ def newphoto():
 	if request.json:
 		data = request.json
 
+
+
 		photo = models.Photo()
 		photo.img = data.get("photo")  
+		photo.event = "itp-halloween-2012"
 		photo.slug = slugify(photo.img)
 		photo.save() 
 		return "Received %s" %data.get("photo") 	
