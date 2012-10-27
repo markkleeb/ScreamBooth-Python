@@ -33,35 +33,35 @@ def index():
 
 
 	templateData = {
-		'photos' : models.Photo.objects(),
+		'photos' : models.Photo.objects().order_by('img', '-timestamp')
 		
 	}
 	return render_template("main.html", **templateData)
-	#return render_template("main.html")
 
 
 
-@app.route("/photos/add", methods=["POST"])
+
+@app.route("/photos/add", methods=["GET", "POST"])
 def newphoto():
 
 	app.logger.debug("JSON received...")
-	app.logger.debug(request.form)
+	app.logger.debug(request.json)
 
-	
-	if request.form:
-		data = request.form
+	print request.json
+
+	if request.json:
+		data = request.json
 
 		photo = models.Photo()
 		photo.img = data.get("photo")  
-		photo.mic = data.get("mic")
-		photo.slug = data.get("photo")  #slugify(photo.img)
-		photo.save() 	
+		photo.slug = slugify(photo.img)
+		photo.save() 
 		return "Received %s" %data.get("photo") 	
 
 
 	else:
 
-		return "FAIL : %s" %request.form
+		return "FAIL : %s" %request.json
 	# get form data - create new idea
 	
 	
