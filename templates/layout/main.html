@@ -12,21 +12,22 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
         <!-- Get Font from Google http://www.google.com/webfonts -->
-        <link href='http://fonts.googleapis.com/css?family=Peralta' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Creepster' rel='stylesheet' type='text/css'>
 
         {% block styles %}{% endblock %}
-
+<background="#000000">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
-        <div class="container">
-
-            <h1 class="pageheader">
-                <a href="/">SCREAM BOOTH</a>
-            </h1>
-
+        <div class="container"><h1>
+            <center><img src="{{ url_for('static', filename='img/s.gif')}}" width = 40 />CREAM
+            <img src="{{ url_for('static', filename='img/b.gif')}}" width = 40 />OOTH @
+            <img src="{{ url_for('static', filename='img/i.gif')}}" width = 25 />
+            <img src="{{ url_for('static', filename='img/t.gif')}}" width = 40 />
+            <img src="{{ url_for('static', filename='img/p.gif')}}" width = 40 />
+           
             <hr>
 
 
@@ -34,9 +35,9 @@
 
 
             <hr/>
+        </h1>
             <footer>
-                <p><a href="http://itppyweb.herokuapp.com">ITP DWD Fall 2012</a>
-               </p>
+                <p>By "the" Mark Klebak, Danne Woo, Guilherme Costa, and Yucef Merhi. Halloween 2012.</p>
             </footer>
 
         </div> <!-- /container -->
@@ -46,6 +47,6 @@
         <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
         
         {% block scripts %}{% endblock %}
-
+      </center></h1>
     </body>
 </html>

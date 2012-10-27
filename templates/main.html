@@ -4,7 +4,12 @@
 
 {% block body %}
 {% for p in photos %}
-
+<script language="javascript">
+screamphotoTime = "30000";
+screamphotoURL = "http://screambooth.herokuapp.com/";
+function redirTimer() { self.setTimeout("self.location.href = screamphotoURL;", screamphotoTime); }
+</script>
+<body onLoad="redirTimer()" bgcolor="#FFFFFF">
 <img src ="http://dl.dropbox.com/u/32240901/ScreamBooth/images/{{ p.img }}.gif" width = 200 height = 200 />
 
 {% endfor %}

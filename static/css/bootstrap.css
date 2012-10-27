@@ -159,11 +159,11 @@ textarea {
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Creepster', cursive;
   font-size: 14px;
   line-height: 20px;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #000;
 }
 
 a {
@@ -637,6 +637,7 @@ h6 {
   font-weight: bold;
   line-height: 1;
   color: inherit;
+  color: #ff0000;
   text-rendering: optimizelegibility;
 }
 
@@ -648,7 +649,7 @@ h5 small,
 h6 small {
   font-weight: normal;
   line-height: 1;
-  color: #999999;
+  color: #ff0000;
 }
 
 h1 {
@@ -683,6 +684,7 @@ h6 {
 
 h1 small {
   font-size: 24px;
+  color: #ff0000;
 }
 
 h2 small {
@@ -698,6 +700,7 @@ h4 small {
 }
 
 .page-header {
+  color: #ff0000;
   padding-bottom: 9px;
   margin: 20px 0 30px;
   border-bottom: 1px solid #eeeeee;
@@ -775,8 +778,8 @@ dd {
 hr {
   margin: 20px 0;
   border: 0;
-  border-top: 1px solid #eeeeee;
-  border-bottom: 1px solid #ffffff;
+  border-top: 1px solid #FF5300;
+  border-bottom: 2px solid #FF5300;
 }
 
 abbr[title] {
