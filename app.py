@@ -115,9 +115,9 @@ def photo_comment(photo_id):
 	comment.name = request.form.get('name')
 	comment.comment = request.form.get('comment')
 	
-	# append comment to idea
-	member.comments.append(comment)
-	member.save()
+	# append comment to photo
+	photo.comments.append(comment)
+	photo.save()
 
 	return redirect('/photos/%s' % photo.slug)
 
