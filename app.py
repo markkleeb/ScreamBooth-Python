@@ -42,37 +42,29 @@ def index():
 
 
 
-@app.route("/photos/add", methods=["GET", "POST"])
+@app.route("/photos/add", methods=["POST"])
 def newphoto():
 
 	app.logger.debug("JSON received...")
-	app.logger.debug(request.json)
+	app.logger.debug(request.form)
 
-	print request.json
-
-	if request.json:
-		data = request.json
-
-
+	
+	if request.form:
+		data = request.form
 
 		photo = models.Photo()
 		photo.img = data.get("photo")  
 		photo.event = "itp-halloween-2012"
-		photo.slug = slugify(photo.img)
+		photo.slug = data.get("photo")  #slugify(photo.img)
+		photo.mic = data.get("mic")
 		photo.save() 
-		return "Received %s" %data.get("photo") 	
+		return "Received %s" %data.get("photo") 
 
 
 	else:
 
-		return "FAIL : %s" %request.json
+		return "FAIL : %s" %request.form
 	# get form data - create new idea
-	
-	
-	
-
-	
-	
 
 
 	

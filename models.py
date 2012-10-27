@@ -13,7 +13,7 @@ class Photo(Document):
 
 	img = StringField(max_length=120, required=True)
 	slug = StringField()
-	#event = StringField(max_length=120, required=True)
+	event = StringField(max_length=120, required=True)
 
 	
 	comments = ListField( EmbeddedDocumentField(Comment) )
