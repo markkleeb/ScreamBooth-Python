@@ -10,7 +10,7 @@ screamphotoURL = "http://screambooth.herokuapp.com/";
 function redirTimer() { self.setTimeout("self.location.href = screamphotoURL;", screamphotoTime); }
 </script>
 <body onLoad="redirTimer()" bgcolor="#FFFFFF">
-<a href="/photos/{{ p.img }}"><img src ="http://dl.dropbox.com/u/32240901/ScreamBooth/images/{{ p.img }}.gif" width = 200 height = 200 /></a>
+<a href="/photos/{{ p.img }}"><img src ="s3.amazonaws.com/screambooth/itp-halloween-2012/{{ p.img }}.gif" width = 200 height = 200 /></a>
 
 {% endfor %}
 
