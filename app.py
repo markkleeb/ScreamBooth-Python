@@ -43,7 +43,7 @@ def index():
 @app.route("/itp-halloween-2012")
 def itp():
 
-	itp = models.Photo.objects().get(event=itp-halloween-2012).order_by('-img')
+	itp = models.Photo.objects().get(event="itp-halloween-2012").order_by('-img')
 
 	templateData = {
 		'photos' : itp
