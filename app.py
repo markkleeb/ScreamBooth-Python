@@ -40,6 +40,16 @@ def index():
 	return render_template("main.html", **templateData)
 
 
+@app.route("itp-halloween-2012")
+def itp():
+
+	itp = models.Photo.objects().get(event=itp-halloween-2012).order_by('-img')
+
+	templateData = {
+		'photos' : itp
+	}
+
+	return render_template("itp-halloween-2012.html", **templateData)
 
 
 @app.route("/photos/add", methods=["POST"])
