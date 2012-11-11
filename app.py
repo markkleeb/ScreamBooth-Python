@@ -159,10 +159,10 @@ def data_photos():
 				}
 
 				# append comment_dict to ['comments']
-				tmpIdea['comments'].append(comment_dict)
+				tmpPhoto['comments'].append(comment_dict)
 
 			# insert idea dictionary into public_ideas list
-			public_photos.append( tmpIdea )
+			public_photos.append( tmpPhoto )
 
 		# prepare dictionary for JSON return
 		data = {
