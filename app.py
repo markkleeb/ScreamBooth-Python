@@ -5,7 +5,7 @@ import re
 #import boto
 from unidecode import unidecode
 
-from flask import Flask, request, render_template, redirect, abort
+from flask import Flask, request, render_template, redirect, abort, jsonify
 
 #from boto.s3.connection import S3Connection
 #conn = S3Connection('AKIAJUCJRHFFJ3VIWKPQ', 'wGxMAeKlMbjHjtVvTwcBnnQ+s2OlRvAG77QpeGMC')
@@ -125,6 +125,61 @@ def photo_comment(photo_id):
 	photo.save()
 
 	return redirect('/photos/%s' % photo.slug)
+
+
+@app.route('/data/photos')
+def data_photos():
+
+	# query for the ideas - return oldest first, limit 10
+	photos = models.Photo.objects().order_by('+timestamp').limit(10)
+
+	if photos:
+
+		# list to hold ideas
+		public_photos = []
+
+		#prep data for json
+		for p in photos:
+
+			tmpPhoto = {
+				'id' : p.img,
+				'event' : p.event,
+				'timestamp' : str( p.timestamp )
+			}
+
+			# comments / our embedded documents
+			tmpPhoto['comments'] = [] # list - will hold all comment dictionaries
+
+			# loop through idea comments
+			for c in p.comments:
+				comment_dict = {
+					'name' : c.name,
+					'comment' : c.comment,
+					'timestamp' : str( c.timestamp )
+				}
+
+				# append comment_dict to ['comments']
+				tmpIdea['comments'].append(comment_dict)
+
+			# insert idea dictionary into public_ideas list
+			public_photos.append( tmpIdea )
+
+		# prepare dictionary for JSON return
+		data = {
+			'status' : 'OK',
+			'photos' : public_photos
+		}
+
+		# jsonify (imported from Flask above)
+		# will convert 'data' dictionary and set mime type to 'application/json'
+		return jsonify(data)
+
+	else:
+		error = {
+			'status' : 'error',
+			'msg' : 'unable to retrieve ideas'
+		}
+		return jsonify(error)
 
 
 @app.errorhandler(404)
