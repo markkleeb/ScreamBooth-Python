@@ -131,7 +131,7 @@ def photo_comment(photo_id):
 def data_photos():
 
 	# query for the ideas - return oldest first, limit 10
-	photos = models.Photo.objects().order_by('+timestamp').limit(10)
+	photos = models.Photo.objects().order_by('-timestamp').limit(30)
 
 	if photos:
 
