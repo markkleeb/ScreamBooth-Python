@@ -2,6 +2,7 @@
 
 import os, datetime
 import re
+import requests
 #import boto
 from unidecode import unidecode
 
@@ -205,6 +206,179 @@ if __name__ == "__main__":
 	
 	port = int(os.environ.get('PORT', 5000)) # locally PORT 5000, Heroku will assign its own port
 	app.run(host='0.0.0.0', port=port)
+
+
+
+
+
+#----------Get ITP Demographics ----------------------
+
+@app.route('/getdemographics')
+def get_remote_demographics():
+
+	# ideas available via json
+	dem_url = "http://itp-demographics.herokuapp.com/data/demographics"
+
+	# make a GET request to the url
+	dem_request = requests.get(dem_url)
+
+	# log out what we got
+	app.logger.info(dem_request.json)
+
+	# requests will automatically convert json for us.
+	# .json will convert incoming json to Python dictionary for us
+	dem_data = dem_request.json
+
+	# alternative way
+	# ideas_data = json.loads( idea_request.text )
+
+	# the returned json looks like
+	# {
+	# 	'status' : 'OK',
+	# 	'ideas' : [
+	# 		{
+	# 		timestamp: "2012-10-02 09:16:54.086000",
+	# 		title: "Immortality",
+	# 		idea: "Immortality is the ability to live forever, or put another way, it is an immunity from death. It is unknown whether human physical (material) immortality is an achievable condition.",
+	# 		comments: [ ],
+	# 		creator: "John"
+	# 		},
+	# 		...
+	# 	]
+	# }
+
+	users = dem_data.get('users')
+
+
+	america =0
+	korea=0
+	china=0
+	brazil=0
+	paraguay=0
+	canada = 0
+	mexico = 0
+	germany = 0
+	argentina = 0
+	chile = 0
+	venezuela = 0
+	denmark = 0
+	turkey = 0
+	pakistan = 0
+	russia = 0
+	peru = 0
+	india = 0
+	france = 0
+
+
+	for u in users:
+
+		if (u['birthplace'] == "USA") | (u['birthplace'] == "usa") | (u['birthplace'] == "US") | (u['birthplace'] == "America") | (u['birthplace'] == "United States") | (u['birthplace'] == "united states")
+			america = america +1
+		end
+
+		if (u['birthplace'] == "Brazil") | (u['birthplace'] == "brasil")
+			brazil = brazil + 1
+		end
+
+		if (u['birthplace'] == "china") | (u['birthplace'] == "China")
+			china = china +1
+		end
+
+		if u['birthplace'] == "South Korea" 
+			korea = korea +1
+		end
+
+		if u['birthplace'] == "Paraguay" 
+			paraguay = paraguay +1
+		end
+
+		if (u['birthplace'] == "CANADA") | (u['birthplace'] == "Canada")
+			canada = canada + 1
+		end
+
+		if u['birthplace'] == "Mexico" 
+			mexico = mexico +1
+		end
+
+		if u['birthplace'] == "Germany" 
+			germany = germany +1
+		end
+
+		if u['birthplace'] == "Argentina" 
+			argentina = argentina +1
+		end
+
+		if u['birthplace'] == "Chile" 
+			chile = chile +1
+		end
+
+		if (u['birthplace'] == "USSR (Russia)") | (u['birthplace'] == "USSR/Russia")
+			russia = russia +1
+		end
+
+		if u['birthplace'] == "Peru" 
+			peru = peru +1
+		end
+
+		if u['birthplace'] == "France" 
+			france = france +1
+		end
+
+		if u['birthplace'] == "Pakistan" 
+			pakistan = pakistan +1
+		end
+
+		if u['birthplace'] == "India" 
+			india = india+1
+		end
+
+		if u['birthplace'] == "denmark" 
+			denmark = denmark +1
+		end
+
+		if u['birthplace'] == "Turkey" 
+			turkey = turkey +1
+		end
+
+		if u['birthplace'] == "Venezuela" 
+			venezuela = venezuela +1
+		end
+
+	end
+
+
+
+	if dem_data.get('status') == "OK":
+		templateData = {
+			'users' : dem_data.get('users'),
+			'america' : america,
+			'brazil' : brazil,
+			'france' : france,
+			'argentina' : argentina,
+			'chile' : chile,
+			'paraguay' : paraguay,
+			'venezuela' : venezuela,
+			'peru' : peru,
+			'mexico' : mexico,
+			'canada' : canada,
+			'russia' : russia,
+			'india' : india,
+			'pakistan' : pakistan,
+			'turkey' : turkey,
+			'denmark' : denmark,
+			'germany' : germany,
+			'korea' : korea,
+			'china' : china
+
+
+		}
+
+		return render_template('itp-demographics.html', **templateData)
+
+
+	else:
+		return "uhoh something went wrong - status = %s" % ideas_data.get('status')
+
 
 
 
