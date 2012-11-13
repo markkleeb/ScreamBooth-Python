@@ -272,75 +272,75 @@ def get_remote_demographics():
 
 	for u in users:
 
-		if (u['birthplace'] == "USA") | (u['birthplace'] == "usa") | (u['birthplace'] == "US") | (u['birthplace'] == "America") | (u['birthplace'] == "United States") | (u['birthplace'] == "united states")
+		if (u['birthplace'] == 'USA') | (u['birthplace'] == 'usa') | (u['birthplace'] == 'US') | (u['birthplace'] == 'America') | (u['birthplace'] == 'United States') | (u['birthplace'] == 'united states'):
 			america = america +1
 		end
 
-		if (u['birthplace'] == "Brazil") | (u['birthplace'] == "brasil")
+		if (u['birthplace'] == 'Brazil') | (u['birthplace'] == 'brasil'):
 			brazil = brazil + 1
 		end
 
-		if (u['birthplace'] == "china") | (u['birthplace'] == "China")
+		if (u['birthplace'] == 'china') | (u['birthplace'] == 'China'):
 			china = china +1
 		end
 
-		if u['birthplace'] == "South Korea" 
+		if u['birthplace'] == 'South Korea': 
 			korea = korea +1
 		end
 
-		if u['birthplace'] == "Paraguay" 
+		if u['birthplace'] == 'Paraguay': 
 			paraguay = paraguay +1
 		end
 
-		if (u['birthplace'] == "CANADA") | (u['birthplace'] == "Canada")
+		if (u['birthplace'] == 'CANADA') | (u['birthplace'] == 'Canada'):
 			canada = canada + 1
 		end
 
-		if u['birthplace'] == "Mexico" 
+		if u['birthplace'] == 'Mexico': 
 			mexico = mexico +1
 		end
 
-		if u['birthplace'] == "Germany" 
+		if u['birthplace'] == 'Germany':
 			germany = germany +1
 		end
 
-		if u['birthplace'] == "Argentina" 
+		if u['birthplace'] == 'Argentina': 
 			argentina = argentina +1
 		end
 
-		if u['birthplace'] == "Chile" 
+		if u['birthplace'] == 'Chile':
 			chile = chile +1
 		end
 
-		if (u['birthplace'] == "USSR (Russia)") | (u['birthplace'] == "USSR/Russia")
+		if (u['birthplace'] == 'USSR (Russia)') | (u['birthplace'] == 'USSR/Russia'):
 			russia = russia +1
 		end
 
-		if u['birthplace'] == "Peru" 
+		if u['birthplace'] == 'Peru':
 			peru = peru +1
 		end
 
-		if u['birthplace'] == "France" 
+		if u['birthplace'] == 'France': 
 			france = france +1
 		end
 
-		if u['birthplace'] == "Pakistan" 
+		if u['birthplace'] == 'Pakistan': 
 			pakistan = pakistan +1
 		end
 
-		if u['birthplace'] == "India" 
+		if u['birthplace'] == 'India': 
 			india = india+1
 		end
 
-		if u['birthplace'] == "denmark" 
+		if u['birthplace'] == 'denmark': 
 			denmark = denmark +1
 		end
 
-		if u['birthplace'] == "Turkey" 
+		if u['birthplace'] == 'Turkey': 
 			turkey = turkey +1
 		end
 
-		if u['birthplace'] == "Venezuela" 
+		if u['birthplace'] == 'Venezuela': 
 			venezuela = venezuela +1
 		end
 
