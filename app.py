@@ -183,30 +183,6 @@ def data_photos():
 		return jsonify(error)
 
 
-@app.errorhandler(404)
-def page_not_found(error):
-    return render_template('404.html'), 404
-
-
-# slugify the title 
-# via http://flask.pocoo.org/snippets/5/
-_punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
-def slugify(text, delim=u'-'):
-	"""Generates an ASCII-only slug."""
-	result = []
-	for word in _punct_re.split(text.lower()):
-		result.extend(unidecode(word).split())
-	return unicode(delim.join(result))
-
-
-# --------- Server On ----------
-# start the webserver
-if __name__ == "__main__":
-	app.debug = True
-	
-	port = int(os.environ.get('PORT', 5000)) # locally PORT 5000, Heroku will assign its own port
-	app.run(host='0.0.0.0', port=port)
-
 
 
 
@@ -274,77 +250,76 @@ def get_remote_demographics():
 
 		if (u['birthplace'] == 'USA') | (u['birthplace'] == 'usa') | (u['birthplace'] == 'US') | (u['birthplace'] == 'America') | (u['birthplace'] == 'United States') | (u['birthplace'] == 'united states'):
 			america = america +1
-		end
+		
 
 		if (u['birthplace'] == 'Brazil') | (u['birthplace'] == 'brasil'):
 			brazil = brazil + 1
-		end
+		
 
 		if (u['birthplace'] == 'china') | (u['birthplace'] == 'China'):
 			china = china +1
-		end
+		
 
 		if u['birthplace'] == 'South Korea': 
 			korea = korea +1
-		end
+		
 
 		if u['birthplace'] == 'Paraguay': 
 			paraguay = paraguay +1
-		end
+		
 
 		if (u['birthplace'] == 'CANADA') | (u['birthplace'] == 'Canada'):
 			canada = canada + 1
-		end
+		
 
 		if u['birthplace'] == 'Mexico': 
 			mexico = mexico +1
-		end
-
+		
 		if u['birthplace'] == 'Germany':
 			germany = germany +1
-		end
+		
 
 		if u['birthplace'] == 'Argentina': 
 			argentina = argentina +1
-		end
+		
 
 		if u['birthplace'] == 'Chile':
 			chile = chile +1
-		end
+		
 
 		if (u['birthplace'] == 'USSR (Russia)') | (u['birthplace'] == 'USSR/Russia'):
 			russia = russia +1
-		end
+		
 
 		if u['birthplace'] == 'Peru':
 			peru = peru +1
-		end
+		
 
 		if u['birthplace'] == 'France': 
 			france = france +1
-		end
+		
 
 		if u['birthplace'] == 'Pakistan': 
 			pakistan = pakistan +1
-		end
+		
 
 		if u['birthplace'] == 'India': 
 			india = india+1
-		end
+		
 
 		if u['birthplace'] == 'denmark': 
 			denmark = denmark +1
-		end
+		
 
 		if u['birthplace'] == 'Turkey': 
 			turkey = turkey +1
-		end
+		
 
 		if u['birthplace'] == 'Venezuela': 
 			venezuela = venezuela +1
-		end
+		
 
-	end
+	
 
 
 
@@ -380,6 +355,30 @@ def get_remote_demographics():
 		return "uhoh something went wrong - status = %s" % ideas_data.get('status')
 
 
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
+
+
+# slugify the title 
+# via http://flask.pocoo.org/snippets/5/
+_punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
+def slugify(text, delim=u'-'):
+	"""Generates an ASCII-only slug."""
+	result = []
+	for word in _punct_re.split(text.lower()):
+		result.extend(unidecode(word).split())
+	return unicode(delim.join(result))
+
+
+# --------- Server On ----------
+# start the webserver
+if __name__ == "__main__":
+	app.debug = True
+	
+	port = int(os.environ.get('PORT', 5000)) # locally PORT 5000, Heroku will assign its own port
+	app.run(host='0.0.0.0', port=port)
 
 
 	
