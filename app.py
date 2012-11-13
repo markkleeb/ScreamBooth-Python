@@ -145,7 +145,6 @@ def data_photos():
 			tmpPhoto = {
 				'id' : p.img,
 				'event' : p.event,
-				'mic' : p.mic,
 				'timestamp' : str( p.timestamp )
 				
 			}
