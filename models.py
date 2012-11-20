@@ -14,6 +14,7 @@ class Photo(Document):
 	img = StringField(max_length=120, required=True)
 	slug = StringField()
 	event = StringField(max_length=120, required=True)
+	mic = StringField(max_length=120)
 
 	
 	comments = ListField( EmbeddedDocumentField(Comment) )

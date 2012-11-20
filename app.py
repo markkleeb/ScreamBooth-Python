@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import os, datetime
-import re
+import os, datetime, re
 import requests
-#import boto
+import boto
 from unidecode import unidecode
 
 from flask import Flask, request, render_template, redirect, abort, jsonify
@@ -17,7 +16,19 @@ from mongoengine import *
 # import data models
 import models
 
+# Python Image Library
+import StringIO
+from PIL import Image
+
 app = Flask(__name__)   # create our flask app
+
+#---------Connect to AWS-----------------
+
+app.secret_key = os.environ.get('SECRET_KEY')
+app.config['CSRF_ENABLED'] = False
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024 # 16 megabyte file upload
+
+
 
 # --------- Database Connection ---------
 # MongoDB connection to MongoLab's database
@@ -25,6 +36,7 @@ connect('mydata', host=os.environ.get('MONGOLAB_URI'))
 print "Connecting to MongoLabs"
 
 
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 # --------- Routes ----------
 
@@ -63,11 +75,27 @@ def newphoto():
 	if request.form:
 		data = request.form
 
+		
+
+		s3conn = boto.connect_s3(os.environ.get('AWS_ACCESS_KEY_ID'),os.environ.get('AWS_SECRET_ACCESS_KEY'))
+
+		b = s3conn.get_bucket(os.environ.get('AWS_BUCKET')) #bucket name defined in .env
+		k = b.new_key(b)
+		k.key = "/test/" + photo.img
+		k.set_metadata("Content-Type", data.get("img").mimetype)
+		k.set_contents_from_string(data.get("img").stream.read())
+		k.make_public()
+
+
+		if k and k.size > 0;
+
 		photo = models.Photo()
 		photo.img = data.get("photo")  
-		photo.event = "itp-halloween-2012"
+		photo.event = "test"
 		photo.slug = data.get("photo")  #slugify(photo.img)
 		photo.mic = data.get("mic")
+
+
 		photo.save() 
 		return "Received %s" %data.get("photo") 
 
