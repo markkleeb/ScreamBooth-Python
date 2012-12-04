@@ -7,6 +7,7 @@ from unidecode import unidecode
 
 from flask import Flask, request, render_template, redirect, abort, jsonify
 
+
 #from boto.s3.connection import S3Connection
 #conn = S3Connection('AKIAJUCJRHFFJ3VIWKPQ', 'wGxMAeKlMbjHjtVvTwcBnnQ+s2OlRvAG77QpeGMC')
 
@@ -65,39 +66,52 @@ def itp():
 	return render_template("itp-halloween-2012.html", **templateData)
 
 
+@app.route("/test")
+def test():
+
+	test = models.Photo.objects(event='test').order_by('-img')
+
+	templateData = {
+		'photos' : test
+	}
+
+	return render_template("itp-halloween-2012.html", **templateData)
+
+
 @app.route("/photos/add", methods=["POST"])
 def newphoto():
 
-	app.logger.debug("JSON received...")
-	app.logger.debug(request.form)
+	#app.logger.debug("JSON received...")
+	#app.logger.debug(request.form)
 
 	
 	if request.form:
 		data = request.form
 
-		
-
-		s3conn = boto.connect_s3(os.environ.get('AWS_ACCESS_KEY_ID'),os.environ.get('AWS_SECRET_ACCESS_KEY'))
-
-		b = s3conn.get_bucket(os.environ.get('AWS_BUCKET')) #bucket name defined in .env
-		k = b.new_key(b)
-		k.key = "/test/" + photo.img
-		k.set_metadata("Content-Type", data.get("img").mimetype)
-		k.set_contents_from_string(data.get("img").stream.read())
-		k.make_public()
-
-
-		if k and k.size > 0;
-
 		photo = models.Photo()
 		photo.img = data.get("photo")  
 		photo.event = "test"
 		photo.slug = data.get("photo")  #slugify(photo.img)
-		photo.mic = data.get("mic")
+			#photo.mic = data.get("mic")
+
+		if request.files["img"]: #and allowed_file(request.files["img"].filename):
+
+			#app.logger.debug(request.files["img"].mimetype)
+
+			s3conn = boto.connect_s3(os.environ.get('AWS_ACCESS_KEY_ID'),os.environ.get('AWS_SECRET_ACCESS_KEY'))
+
+			b = s3conn.get_bucket(os.environ.get('AWS_BUCKET')) #bucket name defined in .env
+			k = b.new_key(b)
+			k.key = "test/" + request.files["img"].filename
+			k.set_metadata("Content-Type" , "image/gif")
+			k.set_contents_from_string(request.files["img"].stream.read())
+			k.make_public()
 
 
-		photo.save() 
-		return "Received %s" %data.get("photo") 
+			if k and k.size > 0:
+
+				photo.save() 
+				return "Received %s" %data.get("photo") 
 
 
 	else:
@@ -106,7 +120,7 @@ def newphoto():
 	# get form data - create new idea
 
 
-	
+
 
 @app.route("/photos/<photo_slug>")
 def photo_display(photo_slug):
@@ -212,176 +226,6 @@ def data_photos():
 		return jsonify(error)
 
 
-
-
-
-
-#----------Get ITP Demographics ----------------------
-
-@app.route('/getdemographics')
-def get_remote_demographics():
-
-	# ideas available via json
-	dem_url = "http://itp-demographics.herokuapp.com/data/demographics"
-
-	# make a GET request to the url
-	dem_request = requests.get(dem_url)
-
-	# log out what we got
-	app.logger.info(dem_request.json)
-
-	# requests will automatically convert json for us.
-	# .json will convert incoming json to Python dictionary for us
-	dem_data = dem_request.json
-
-	# alternative way
-	# ideas_data = json.loads( idea_request.text )
-
-	# the returned json looks like
-	# {
-	# 	'status' : 'OK',
-	# 	'ideas' : [
-	# 		{
-	# 		timestamp: "2012-10-02 09:16:54.086000",
-	# 		title: "Immortality",
-	# 		idea: "Immortality is the ability to live forever, or put another way, it is an immunity from death. It is unknown whether human physical (material) immortality is an achievable condition.",
-	# 		comments: [ ],
-	# 		creator: "John"
-	# 		},
-	# 		...
-	# 	]
-	# }
-
-	users = dem_data.get('users')
-
-
-	america =0
-	korea=0
-	china=0
-	brazil=0
-	paraguay=0
-	canada = 0
-	mexico = 0
-	germany = 0
-	argentina = 0
-	chile = 0
-	venezuela = 0
-	denmark = 0
-	turkey = 0
-	pakistan = 0
-	russia = 0
-	peru = 0
-	india = 0
-	france = 0
-
-
-	for u in users:
-
-		if (u['birthplace'] == 'USA') | (u['birthplace'] == 'usa') | (u['birthplace'] == 'US') | (u['birthplace'] == 'America') | (u['birthplace'] == 'United States') | (u['birthplace'] == 'united states'):
-			america = america +1
-		
-
-		if (u['birthplace'] == 'Brazil') | (u['birthplace'] == 'brasil'):
-			brazil = brazil + 1
-		
-
-		if (u['birthplace'] == 'china') | (u['birthplace'] == 'China'):
-			china = china +1
-		
-
-		if u['birthplace'] == 'South Korea': 
-			korea = korea +1
-		
-
-		if u['birthplace'] == 'Paraguay': 
-			paraguay = paraguay +1
-		
-
-		if (u['birthplace'] == 'CANADA') | (u['birthplace'] == 'Canada'):
-			canada = canada + 1
-		
-
-		if u['birthplace'] == 'Mexico': 
-			mexico = mexico +1
-		
-		if u['birthplace'] == 'Germany':
-			germany = germany +1
-		
-
-		if u['birthplace'] == 'Argentina': 
-			argentina = argentina +1
-		
-
-		if u['birthplace'] == 'Chile':
-			chile = chile +1
-		
-
-		if (u['birthplace'] == 'USSR (Russia)') | (u['birthplace'] == 'USSR/Russia'):
-			russia = russia +1
-		
-
-		if u['birthplace'] == 'Peru':
-			peru = peru +1
-		
-
-		if u['birthplace'] == 'France': 
-			france = france +1
-		
-
-		if u['birthplace'] == 'Pakistan': 
-			pakistan = pakistan +1
-		
-
-		if u['birthplace'] == 'India': 
-			india = india+1
-		
-
-		if u['birthplace'] == 'denmark': 
-			denmark = denmark +1
-		
-
-		if u['birthplace'] == 'Turkey': 
-			turkey = turkey +1
-		
-
-		if u['birthplace'] == 'Venezuela': 
-			venezuela = venezuela +1
-		
-
-	
-
-
-
-	if dem_data.get('status') == "OK":
-		templateData = {
-			'users' : dem_data.get('users'),
-			'america' : america,
-			'brazil' : brazil,
-			'france' : france,
-			'argentina' : argentina,
-			'chile' : chile,
-			'paraguay' : paraguay,
-			'venezuela' : venezuela,
-			'peru' : peru,
-			'mexico' : mexico,
-			'canada' : canada,
-			'russia' : russia,
-			'india' : india,
-			'pakistan' : pakistan,
-			'turkey' : turkey,
-			'denmark' : denmark,
-			'germany' : germany,
-			'korea' : korea,
-			'china' : china
-
-
-		}
-
-		return render_template('itp-demographics.html', **templateData)
-
-
-	else:
-		return "uhoh something went wrong - status = %s" % ideas_data.get('status')
 
 
 
