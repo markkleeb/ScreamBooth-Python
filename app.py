@@ -19,7 +19,7 @@ import models
 
 # Python Image Library
 import StringIO
-from PIL import Image
+
 
 app = Flask(__name__)   # create our flask app
 
