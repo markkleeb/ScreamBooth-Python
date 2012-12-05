@@ -3,20 +3,13 @@
 
 
 {% block body %}
-{% for p in photos %}
-<script language="javascript">
-screamphotoTime = "30000";
-screamphotoURL = "http://screambooth.herokuapp.com/";
-function redirTimer() { self.setTimeout("self.location.href = screamphotoURL;", screamphotoTime); }
-</script>
-<body bgcolor="#FFFFFF">
 
+<body bgcolor="#FFFFFF">
+<h3>ITP Halloween Party 2012</h3>
 <div class ="pic">
-<a href="/photos/{{ p.img }}"><img src ="http://s3.amazonaws.com/screambooth/{{ p.event }}/{{ p.img }}.gif" width = 200 height = 200 /></a>
+<a href="/itp-halloween-2012"><img src ="http://s3.amazonaws.com/screambooth/itp-halloween-2012/1351400835627.gif" width = 200 height = 200 /></a>
 <br>
-<h6>
-Comments  ({{ p.comments|length }})
-</h6>
+
 </div>
 {% endfor %}
 
