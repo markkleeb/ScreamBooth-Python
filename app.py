@@ -45,13 +45,8 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 @app.route("/")
 def index():
 
-	photos = models.Photo.objects().order_by('-img')
-
-	templateData = {
-		'photos' : photos
-		
-	}
-	return render_template("main.html", **templateData)
+	
+	return render_template("main.html")
 
 
 @app.route("/itp-halloween-2012")
