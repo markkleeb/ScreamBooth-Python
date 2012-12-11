@@ -95,7 +95,7 @@ def newphoto():
 
 			s3conn = boto.connect_s3(os.environ.get('AWS_ACCESS_KEY_ID'),os.environ.get('AWS_SECRET_ACCESS_KEY'))
 
-			b = s3conn.get_bucket(os.environ.get('screambooth')) #bucket name defined in .env
+			b = s3conn.get_bucket(os.environ.get('AWS_BUCKET')) #bucket name defined in .env
 			k = b.new_key(b)
 			k.key = "test/" + request.files["img"].filename
 			k.set_metadata("Content-Type" , "image/gif")
