@@ -28,6 +28,16 @@ margin: 5px;
 width: 210px;
 }
 
+.main-pic{
+
+display: block;
+float: left;
+margin: 5px;
+width: 400px;
+
+
+}
+
 .demographics{
 
 font-family: Helvetica;
