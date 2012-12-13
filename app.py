@@ -98,7 +98,7 @@ def newphoto():
 		photo.img = data.get("photo")  
 		photo.event = data.get("event")
 		photo.slug = data.get("photo")  #slugify(photo.img)
-		photo.mic = data.get("mic")
+			#photo.mic = data.get("mic")
 
 		if request.files["img"]: #and allowed_file(request.files["img"].filename):
 
@@ -108,7 +108,7 @@ def newphoto():
 
 			b = s3conn.get_bucket(os.environ.get('AWS_BUCKET')) #bucket name defined in .env
 			k = b.new_key(b)
-			k.key = photo.event + request.files["img"].filename
+			k.key = photo.event  + "/" + request.files["img"].filename
 			k.set_metadata("Content-Type" , "image/gif")
 			k.set_contents_from_string(request.files["img"].stream.read())
 			k.make_public()
