@@ -48,7 +48,7 @@ def index():
 @app.route("/index")
 def main():
 
-	return render_template("scream2.html")
+	return render_template("main.html")
 
 
 @app.route("/itp-halloween-2012")
