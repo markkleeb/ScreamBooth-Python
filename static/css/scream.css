@@ -1,0 +1,128 @@
+<!-- css by yucef merhi. 2012 
+cibernetic (at) gmail (dot) com -->
+
+
+body{
+  margin:0;
+  padding:header-<length> 0 footer-<length> 0;
+ }
+
+ a { text-decoration:none }
+ 
+ div#header{
+  position:absolute;
+  text-align: center;
+  top:0;
+  left:0;
+  width:100%;
+  height:header-<length>;
+  background:#4F4F4F;
+ }
+ div#footer{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:footer-<length>;
+   background:#4F4F4F;
+ }
+ @media screen{
+  body>div#header{
+   position:fixed;
+  }
+  body>div#footer{
+   position:fixed;
+  }
+
+  .thefooter {
+  font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+  color : #C2C2C2;
+  font-size : 11px;
+  font-weight : normal;
+  text-align : center;
+ }
+.thefooter a:link, a:visited {
+  font-size : 11px;
+  color : #FFF;
+  text-decoration : none;
+  font-weight : normal;
+}
+.thefooter a:hover {
+  font-size : 11px;
+  color : #FFBB00;
+  text-decoration : none;
+  font-weight : normal;
+}
+ }
+ * html body{
+  overflow:hidden;
+ } 
+ * html div#content{
+  height:100%;
+  overflow:auto;
+ }
+
+#scream0 {
+	background: #333333;
+	padding: 80px;
+	margin: 0px 0;
+	min-height: 100%;
+}
+
+#scr0 {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#scr0 img {
+	margin: 5px;
+	border: 0px solid #eee;
+	-webkit-transition: all 0.5s ease-out;
+	-moz-transition: all 0.5s ease-out;
+	-o-transition: all 0.5s ease-out;
+}
+
+#scr0 img:hover {
+	-webkit-transform: rotate(-360deg);
+	-moz-transform: rotate(-7deg);
+	-o-transform: rotate(-7deg);
+}
+
+@-webkit-keyframes screamShake {
+	0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+	10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+	70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+	80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+	100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
+.shake,
+.shake:focus {
+	-webkit-animation-name: screamShake;
+	-webkit-animation-duration: 0.8s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+.shake {
+	display:inline-block
+}
+
+.pic{
+display: block;
+float: left;
+margin: 5px;
+width: 210px;
+}
+
+.main-pic{
+display: block;
+float: left;
+margin: 5px;
+width: 400px;
+}

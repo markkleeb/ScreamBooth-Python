@@ -8,9 +8,6 @@ from unidecode import unidecode
 from flask import Flask, request, render_template, redirect, abort, jsonify
 
 
-#from boto.s3.connection import S3Connection
-#conn = S3Connection('AKIAJUCJRHFFJ3VIWKPQ', 'wGxMAeKlMbjHjtVvTwcBnnQ+s2OlRvAG77QpeGMC')
-
 # import all of mongoengine
 from mongoengine import *
 
@@ -46,7 +43,7 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 def index():
 
 	
-	return render_template("main.html")
+	return render_template("openpage.html")
 
 
 @app.route("/itp-halloween-2012")
