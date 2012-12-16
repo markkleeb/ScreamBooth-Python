@@ -43,12 +43,12 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 def index():
 
 	
-	return render_template("openpage.html")
+	return render_template("scream.html")
 
 @app.route("/index")
 def main():
 
-	return render_template("main.html")
+	return render_template("scream2.html")
 
 
 @app.route("/itp-halloween-2012")
